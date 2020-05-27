@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h4o-qE-d7U">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,121 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-Hr-vNU">
+                                <rect key="frame" x="87" y="341" width="240" height="214"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3I-WF-Hdm" customClass="ValidatableTextField" customModule="TestProject" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="112" width="200" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="a1J-7x-IfA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="expression" value="^(?=.*[A-Z])(?=.*[!@#$&amp;*])(?=.*[0-9]).{8,}$"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Password must be at least 8 characters long, must contain at least one uppercase, one number and one special character"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="validateDelegates" destination="VLC-4O-QuI" collectionClass="NSMutableArray" id="U3S-qx-pZi"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiH-Dm-FrX">
+                                        <rect key="frame" x="171" y="166" width="49" height="30"/>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="doSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Jm-x0-fhq"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x4i-cv-xLQ" customClass="ValidatableTextField" customModule="TestProject" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="58" width="200" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="expression">
+                                                <mutableString key="value">^(?:(?:(?:(?: )*(?:(?:(?:\t| )*\r\n)?(?:\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&amp;*+/=?^_'{|}~]+(?:\.[-A-Za-z0-9!#$%&amp;*+/=?^_'{|}~]+)*)|(?:"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\[|\])|(?:\\(?:\t|[ -~]))))+(?: )*)|(?: )+)"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\.[-A-Za-z0-9._~!$&amp;'()*+,;=:]+))\])))(?:(?:(?:(?: )*(?:(?:(?:\t| )*\r\n)?(?:\t| )+))+(?: )*)|(?: )+)?$</mutableString>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Field is not email"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="validateDelegates" destination="VLC-4O-QuI" collectionClass="NSMutableArray" id="jzQ-2x-ptE"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gF-5S-g7C">
+                                        <rect key="frame" x="94" y="22" width="52" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z3I-WF-Hdm" secondAttribute="trailing" constant="20" id="0xA-2O-Wj3"/>
+                                    <constraint firstItem="x4i-cv-xLQ" firstAttribute="centerX" secondItem="nW8-Hr-vNU" secondAttribute="centerX" id="24V-0K-b71"/>
+                                    <constraint firstItem="Z3I-WF-Hdm" firstAttribute="centerX" secondItem="nW8-Hr-vNU" secondAttribute="centerX" id="4aS-Uc-bkY"/>
+                                    <constraint firstItem="x4i-cv-xLQ" firstAttribute="top" secondItem="5gF-5S-g7C" secondAttribute="bottom" constant="15" id="9ky-aI-H3C"/>
+                                    <constraint firstItem="Z3I-WF-Hdm" firstAttribute="leading" relation="lessThanOrEqual" secondItem="nW8-Hr-vNU" secondAttribute="leading" constant="20" id="LnG-Sv-JEH"/>
+                                    <constraint firstAttribute="height" constant="214" id="TJ1-EZ-yyI"/>
+                                    <constraint firstItem="5gF-5S-g7C" firstAttribute="centerX" secondItem="nW8-Hr-vNU" secondAttribute="centerX" id="XZn-oM-hd7"/>
+                                    <constraint firstItem="Z3I-WF-Hdm" firstAttribute="top" secondItem="x4i-cv-xLQ" secondAttribute="bottom" constant="20" placeholder="YES" id="aba-En-umL"/>
+                                    <constraint firstItem="x4i-cv-xLQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="nW8-Hr-vNU" secondAttribute="leading" constant="20" id="apU-mf-Jx2"/>
+                                    <constraint firstAttribute="width" constant="240" id="d6C-48-Icu"/>
+                                    <constraint firstAttribute="trailing" secondItem="FiH-Dm-FrX" secondAttribute="trailing" constant="20" id="gOG-P6-40n"/>
+                                    <constraint firstItem="5gF-5S-g7C" firstAttribute="top" secondItem="nW8-Hr-vNU" secondAttribute="top" constant="22" id="ndS-43-aNO"/>
+                                    <constraint firstAttribute="bottom" secondItem="FiH-Dm-FrX" secondAttribute="bottom" constant="18" id="pup-xe-M9t"/>
+                                    <constraint firstItem="FiH-Dm-FrX" firstAttribute="top" secondItem="Z3I-WF-Hdm" secondAttribute="bottom" constant="20" id="rzG-gw-q7K"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x4i-cv-xLQ" secondAttribute="trailing" constant="20" id="tru-oj-I7a"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="nW8-Hr-vNU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TiY-W1-l3C"/>
+                            <constraint firstItem="nW8-Hr-vNU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wBT-V1-IX4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="SFr-Yb-wp7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="VLC-4O-QuI" customClass="ValidationManager" customModule="TestProject" customModuleProvider="target">
+                    <connections>
+                        <outletCollection property="verifiedControls" destination="x4i-cv-xLQ" collectionClass="NSMutableArray" id="aws-78-e2H"/>
+                        <outletCollection property="verifiedControls" destination="Z3I-WF-Hdm" collectionClass="NSMutableArray" id="V49-gn-ds8"/>
+                        <outletCollection property="managedControls" destination="FiH-Dm-FrX" collectionClass="NSMutableArray" id="N3Q-cf-tJZ"/>
+                    </connections>
+                </customObject>
             </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="38e-9a-RgV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h4o-qE-d7U" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P4h-qO-DTq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dWG-hs-Q4q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BNg-Mf-82d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
 </document>

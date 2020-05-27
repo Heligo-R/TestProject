@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		7CA494F523E455EA00ADDE05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA494F423E455EA00ADDE05 /* AppDelegate.swift */; };
 		7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA494F623E455EA00ADDE05 /* SceneDelegate.swift */; };
-		7CA494F923E455EA00ADDE05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA494F823E455EA00ADDE05 /* ViewController.swift */; };
 		7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FA23E455EA00ADDE05 /* Main.storyboard */; };
 		7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FD23E455F000ADDE05 /* Assets.xcassets */; };
 		7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */; };
+		7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */; };
+		7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */; };
+		7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */; };
+		7CE39632247E788000EF5FBD /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE39631247E788000EF5FBD /* UIExtension.swift */; };
+		7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE39633247E7D4000EF5FBD /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7CA494F123E455EA00ADDE05 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA494F423E455EA00ADDE05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CA494F623E455EA00ADDE05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7CA494F823E455EA00ADDE05 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7CA494FB23E455EA00ADDE05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CA494FD23E455F000ADDE05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CA4950023E455F000ADDE05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA4950223E455F000ADDE05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTextField.swift; sourceTree = "<group>"; };
+		7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationUtil.swift; sourceTree = "<group>"; };
+		7CE39631247E788000EF5FBD /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		7CE39633247E7D4000EF5FBD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,43 @@
 		7CA494F323E455EA00ADDE05 /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
+				7CE00E7E247ED58600E9D5AA /* Util */,
+				7CE3962C247E76B100EF5FBD /* View */,
+				7CE39629247E4D6400EF5FBD /* Controller */,
 				7CA494F423E455EA00ADDE05 /* AppDelegate.swift */,
 				7CA494F623E455EA00ADDE05 /* SceneDelegate.swift */,
-				7CA494F823E455EA00ADDE05 /* ViewController.swift */,
 				7CA494FA23E455EA00ADDE05 /* Main.storyboard */,
 				7CA494FD23E455F000ADDE05 /* Assets.xcassets */,
 				7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */,
 				7CA4950223E455F000ADDE05 /* Info.plist */,
 			);
 			path = TestProject;
+			sourceTree = "<group>";
+		};
+		7CE00E7E247ED58600E9D5AA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7CE39629247E4D6400EF5FBD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CE39633247E7D4000EF5FBD /* ViewController.swift */,
+				7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CE3962C247E76B100EF5FBD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */,
+				7CE39631247E788000EF5FBD /* UIExtension.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CA494F923E455EA00ADDE05 /* ViewController.swift in Sources */,
+				7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */,
+				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,
+				7CE39632247E788000EF5FBD /* UIExtension.swift in Sources */,
+				7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */,
+				7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */,
 				7CA494F523E455EA00ADDE05 /* AppDelegate.swift in Sources */,
 				7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */,
 			);
