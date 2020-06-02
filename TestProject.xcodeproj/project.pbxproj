@@ -15,8 +15,9 @@
 		7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */; };
 		7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */; };
 		7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */; };
-		7CE39632247E788000EF5FBD /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE39631247E788000EF5FBD /* UIExtension.swift */; };
 		7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE39633247E7D4000EF5FBD /* ViewController.swift */; };
+		7CFB866C2485190A00DF191B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB866B2485190A00DF191B /* LoginViewController.swift */; };
+		7CFB866E2485193A00DF191B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB866D2485193A00DF191B /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +31,9 @@
 		7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTextField.swift; sourceTree = "<group>"; };
 		7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationUtil.swift; sourceTree = "<group>"; };
-		7CE39631247E788000EF5FBD /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		7CE39633247E7D4000EF5FBD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7CFB866B2485190A00DF191B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7CFB866D2485193A00DF191B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +66,14 @@
 		7CA494F323E455EA00ADDE05 /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
+				7CFB866A2485172100DF191B /* LoginFeature */,
 				7CE00E7E247ED58600E9D5AA /* Util */,
 				7CE3962C247E76B100EF5FBD /* View */,
 				7CE39629247E4D6400EF5FBD /* Controller */,
 				7CA494F423E455EA00ADDE05 /* AppDelegate.swift */,
 				7CA494F623E455EA00ADDE05 /* SceneDelegate.swift */,
 				7CA494FA23E455EA00ADDE05 /* Main.storyboard */,
+				7CE39633247E7D4000EF5FBD /* ViewController.swift */,
 				7CA494FD23E455F000ADDE05 /* Assets.xcassets */,
 				7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */,
 				7CA4950223E455F000ADDE05 /* Info.plist */,
@@ -80,6 +84,7 @@
 		7CE00E7E247ED58600E9D5AA /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */,
 				7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */,
 			);
 			path = Util;
@@ -88,8 +93,6 @@
 		7CE39629247E4D6400EF5FBD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7CE39633247E7D4000EF5FBD /* ViewController.swift */,
-				7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -98,9 +101,17 @@
 			isa = PBXGroup;
 			children = (
 				7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */,
-				7CE39631247E788000EF5FBD /* UIExtension.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7CFB866A2485172100DF191B /* LoginFeature */ = {
+			isa = PBXGroup;
+			children = (
+				7CFB866B2485190A00DF191B /* LoginViewController.swift */,
+				7CFB866D2485193A00DF191B /* Login.storyboard */,
+			);
+			path = LoginFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CFB866E2485193A00DF191B /* Login.storyboard in Resources */,
 				7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */,
 				7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */,
 				7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */,
@@ -176,8 +188,8 @@
 			files = (
 				7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */,
 				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,
-				7CE39632247E788000EF5FBD /* UIExtension.swift in Sources */,
 				7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */,
+				7CFB866C2485190A00DF191B /* LoginViewController.swift in Sources */,
 				7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */,
 				7CA494F523E455EA00ADDE05 /* AppDelegate.swift in Sources */,
 				7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */,

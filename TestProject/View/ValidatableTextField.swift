@@ -8,27 +8,55 @@
 
 import UIKit
 
-class ValidatableTextField: UITextField, IValidatable
+class ValidatableTextField: UITextField
 {
     @IBInspectable var valueRequired :Bool = true
     @IBInspectable var borderMistakeColor :UIColor = .red
     @IBInspectable var borderEmptyColor :UIColor   = .lightGray
     @IBInspectable var borderFilledColor :UIColor  = .green
-    @IBInspectable var expression :String = ""
     @IBInspectable var mistake :String = ""
     @IBInspectable var showMistake :Bool = true
     
-    @IBOutlet var validateDelegates: [IValidationManager]?
+    @IBInspectable public var borderColor:UIColor? {
+        get {
+            if let color = self.layer.borderColor {
+                return  UIColor(cgColor: color)
+            }
+            return .black
+        }
+        set {
+            self.layer.borderColor = newValue?.cgColor
+        }
+    }
+    @IBInspectable public var borderWidth:CGFloat {
+        get {
+            return self.layer.borderWidth
+        }
+        set {
+            self.layer.borderWidth = newValue
+        }
+    }
+    @IBInspectable public var cornerRadius:CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    enum Status{
+        case empty
+        case filled
+        case mistake
+    }
     
     private let label = UILabel()
     
-    var isValid: Bool {
-        return self.text.verification(self.expression, required:self.valueRequired)
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.adjustView()
+        self.adjustLabel()
     }
     
     override func layoutSubviews() {
@@ -38,64 +66,38 @@ class ValidatableTextField: UITextField, IValidatable
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.adjustView()
+        self.adjustLabel()
     }
     
-    private func adjustView() {
-        self.addTarget(self, action: #selector(self.textEditAction(_:)), for: .editingChanged)
-        self.addTarget(self, action: #selector(self.textEditEndedAction(_:)), for: .editingDidEnd)
-    }
-    
-    private func appendLabel() {
-        if let _ = self.label.superview { return }
-        guard let superview = self.superview else { return }
-        
-        superview.addSubview(self.label)
-        
-        NSLayoutConstraint.activate([
-            self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            self.label.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-        ])
-        
-        self.label.translatesAutoresizingMaskIntoConstraints = false
-        self.label.text = self.mistake
+    private func adjustLabel(){
         self.label.numberOfLines = 0
         self.label.font = UIFont.systemFont(ofSize: 12)
         self.label.textColor = self.borderMistakeColor
         self.label.isHidden = true
     }
     
-    @objc func textEditAction(_ sender: UITextField) {
-        self.handleDelegateAction(sender)
-        sender.borderColor = self.calcBorderColor(sender)
-        if !self.label.isHidden {
-            self.label.isHidden = self.isValid
-        }
-    }
-    
-    @objc func textEditEndedAction(_ sender: UITextField) {
-        if self.mistake.count == 0 { return }
-        self.label.isHidden = self.showMistake ? self.isValid : true
-    }
-    
-    private func calcBorderColor(_ sender: UITextField) -> UIColor {
-        if !self.isValid {
-            return self.borderMistakeColor
+    private func appendLabel() {
+        if self.label.superview != nil { return }
+        guard let superview = self.superview as? UIStackView else { return }
+        
+        if let index = superview.arrangedSubviews.firstIndex(of: self) {
+            superview.insertArrangedSubview(self.label, at: index + 1)
         }
         
-        if let text = sender.text, text.count > 0 {
-            return self.borderFilledColor
-        }
-        
-        return self.borderEmptyColor
+        self.label.text = self.mistake
     }
     
-    private func handleDelegateAction(_ sender: UITextField) {
-        guard let list = self.validateDelegates else { return }
-        
-        for validateDelegate in list {
-            validateDelegate.verificated()
+    func updateStatus(_ status: Status){
+        switch status {
+        case .empty:
+            self.borderColor = self.borderEmptyColor
+            self.label.isHidden = true
+        case .filled:
+            self.borderColor = self.borderFilledColor
+            self.label.isHidden = true
+        case .mistake:
+            self.borderColor = self.borderMistakeColor
+            self.label.isHidden = false
         }
     }
 }
