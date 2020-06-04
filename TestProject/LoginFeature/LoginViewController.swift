@@ -14,17 +14,17 @@ class LoginViewController: UIViewController {
     
     let validation = ValidationManager()
     
-    override func viewDidLoad() {
-        
-    }
-    
     @IBAction func textFieldDoneEditing(sender: UITextField) {
         if sender == emailTextField {
-            validation.verifyTextField(emailTextField, expression: .email)
+            emailTextField.updateStatus(validation.verify(emailTextField.text, expression: .email))
         }
         if sender == passwordTextField {
-            validation.verifyTextField(passwordTextField, expression: .password)
+            passwordTextField.updateStatus(validation.verify(passwordTextField.text, expression: .password))
         }
     }
     
+    @IBAction func handleSignUpButtonTap(_ sender: Any) {
+        let registrationVC = RegistrationViewController()
+        navigationController?.pushViewController(registrationVC, animated: true)
+    }
 }

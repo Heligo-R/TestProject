@@ -46,12 +46,6 @@ class ValidatableTextField: UITextField
         }
     }
     
-    enum Status{
-        case empty
-        case filled
-        case mistake
-    }
-    
     private let label = UILabel()
     
     override init(frame: CGRect) {
@@ -87,17 +81,15 @@ class ValidatableTextField: UITextField
         self.label.text = self.mistake
     }
     
-    func updateStatus(_ status: Status){
+    func updateStatus(_ status: ValidationStatus){
         switch status {
         case .empty:
             self.borderColor = self.borderEmptyColor
-            self.label.isHidden = true
         case .filled:
             self.borderColor = self.borderFilledColor
-            self.label.isHidden = true
         case .mistake:
             self.borderColor = self.borderMistakeColor
-            self.label.isHidden = false
         }
+        self.label.isHidden = status != .mistake
     }
 }

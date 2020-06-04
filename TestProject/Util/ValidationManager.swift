@@ -10,16 +10,22 @@ enum VerificationRegex: String {
     case password = "(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}"
 }
 
+enum ValidationStatus{
+    case empty
+    case filled
+    case mistake
+}
+
 class ValidationManager
 {
-    public func verifyTextField(_ textField: ValidatableTextField, expression: VerificationRegex?) {
-        if let text = textField.text, text.count == 0 {
-            textField.updateStatus(.empty)
+    func verify(_ inputString: String?, expression: VerificationRegex?) -> ValidationStatus {
+        if let inputString = inputString, inputString.count == 0 {
+            return(.empty)
         } else {
-            if !textField.text.verification(expression?.rawValue) {
-                textField.updateStatus(.mistake)
+            if !inputString.verification(expression?.rawValue) {
+                return(.mistake)
             } else {
-                textField.updateStatus(.filled)
+                return(.filled)
             }
         }
     }

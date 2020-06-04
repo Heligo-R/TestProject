@@ -33,6 +33,9 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Field is not email"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="textFieldDoneEditingWithSender:" destination="9kT-tc-oMA" eventType="editingDidEnd" id="DQB-9i-jaQ"/>
@@ -47,6 +50,9 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Password must be at least 8 characters long, must contain at least one uppercase, one number and one special character"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="textFieldDoneEditingWithSender:" destination="9kT-tc-oMA" eventType="editingDidEnd" id="7oT-7m-S1X"/>
@@ -62,12 +68,21 @@
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <state key="normal" title="Submit"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9o-zs-b0o">
+                                <rect key="frame" x="107" y="494" width="52" height="30"/>
+                                <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="handleSignUpButtonTap:" destination="9kT-tc-oMA" eventType="touchUpInside" id="Qdf-ec-tzo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="05f-fS-cZH" firstAttribute="centerX" secondItem="mPH-83-xoF" secondAttribute="centerX" id="26x-oB-KOb"/>
                             <constraint firstItem="LiF-aA-Qhh" firstAttribute="trailing" secondItem="05f-fS-cZH" secondAttribute="trailing" id="BKd-ty-B8H"/>
+                            <constraint firstItem="a9o-zs-b0o" firstAttribute="top" secondItem="05f-fS-cZH" secondAttribute="bottom" constant="8" id="Cc4-gW-awN"/>
                             <constraint firstItem="LiF-aA-Qhh" firstAttribute="top" secondItem="05f-fS-cZH" secondAttribute="bottom" constant="8" id="SUY-d5-2jD"/>
+                            <constraint firstItem="a9o-zs-b0o" firstAttribute="leading" secondItem="05f-fS-cZH" secondAttribute="leading" id="Wwn-Ff-uh6"/>
                             <constraint firstItem="05f-fS-cZH" firstAttribute="top" secondItem="K6n-Ss-mqq" secondAttribute="bottom" constant="8" id="lMV-OF-Bny"/>
                             <constraint firstItem="05f-fS-cZH" firstAttribute="centerY" secondItem="mPH-83-xoF" secondAttribute="centerY" id="rGm-UI-zrz"/>
                             <constraint firstItem="K6n-Ss-mqq" firstAttribute="centerX" secondItem="mPH-83-xoF" secondAttribute="centerX" id="xRb-iZ-X6L"/>
