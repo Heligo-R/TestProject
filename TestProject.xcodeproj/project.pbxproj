@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C2A853D2490187A00E97745 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C2A853C2490187A00E97745 /* Registration.storyboard */; };
+		7C2A853F2490187E00E97745 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A853E2490187E00E97745 /* RegistrationViewController.swift */; };
+		7C2A8541249018D400E97745 /* ValidatableDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8540249018D400E97745 /* ValidatableDatePicker.swift */; };
 		7CA494F523E455EA00ADDE05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA494F423E455EA00ADDE05 /* AppDelegate.swift */; };
 		7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA494F623E455EA00ADDE05 /* SceneDelegate.swift */; };
 		7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FA23E455EA00ADDE05 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C2A853C2490187A00E97745 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		7C2A853E2490187E00E97745 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		7C2A8540249018D400E97745 /* ValidatableDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatableDatePicker.swift; sourceTree = "<group>"; };
 		7CA494F123E455EA00ADDE05 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA494F423E455EA00ADDE05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CA494F623E455EA00ADDE05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C2A853B2490184400E97745 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				7C2A853C2490187A00E97745 /* Registration.storyboard */,
+				7C2A853E2490187E00E97745 /* RegistrationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
 		7CA494E823E455EA00ADDE05 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +81,7 @@
 		7CA494F323E455EA00ADDE05 /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
+				7C2A853B2490184400E97745 /* Registration */,
 				7CFB866A2485172100DF191B /* LoginFeature */,
 				7CE00E7E247ED58600E9D5AA /* Util */,
 				7CE3962C247E76B100EF5FBD /* View */,
@@ -100,6 +116,7 @@
 		7CE3962C247E76B100EF5FBD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C2A8540249018D400E97745 /* ValidatableDatePicker.swift */,
 				7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */,
 			);
 			path = View;
@@ -173,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CFB866E2485193A00DF191B /* Login.storyboard in Resources */,
+				7C2A853D2490187A00E97745 /* Registration.storyboard in Resources */,
 				7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */,
 				7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */,
 				7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */,
@@ -188,11 +206,13 @@
 			files = (
 				7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */,
 				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,
+				7C2A853F2490187E00E97745 /* RegistrationViewController.swift in Sources */,
 				7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */,
 				7CFB866C2485190A00DF191B /* LoginViewController.swift in Sources */,
 				7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */,
 				7CA494F523E455EA00ADDE05 /* AppDelegate.swift in Sources */,
 				7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */,
+				7C2A8541249018D400E97745 /* ValidatableDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

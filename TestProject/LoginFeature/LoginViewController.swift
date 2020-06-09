@@ -12,19 +12,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: ValidatableTextField!
     @IBOutlet weak var loginStackFields: UIStackView!
     
-    let validation = ValidationManager()
-    
-    override func viewDidLoad() {
-        
-    }
-    
     @IBAction func textFieldDoneEditing(sender: UITextField) {
+        let validation = ValidationManager()
+        
         if sender == emailTextField {
-            validation.verifyTextField(emailTextField, expression: .email)
+            emailTextField.updateStatus(validation.verifyText(emailTextField.text, expression: .email))
         }
         if sender == passwordTextField {
-            validation.verifyTextField(passwordTextField, expression: .password)
+            passwordTextField.updateStatus(validation.verifyText(passwordTextField.text, expression: .password))
         }
     }
-    
 }

@@ -10,14 +10,13 @@ import UIKit
 
 class ValidatableTextField: UITextField
 {
-    @IBInspectable var valueRequired :Bool = true
-    @IBInspectable var borderMistakeColor :UIColor = .red
-    @IBInspectable var borderEmptyColor :UIColor   = .lightGray
-    @IBInspectable var borderFilledColor :UIColor  = .green
-    @IBInspectable var mistake :String = ""
-    @IBInspectable var showMistake :Bool = true
-    
-    @IBInspectable public var borderColor:UIColor? {
+    @IBInspectable var valueRequired: Bool = true
+    @IBInspectable var borderMistakeColor: UIColor = .red
+    @IBInspectable var borderEmptyColor: UIColor   = .lightGray
+    @IBInspectable var borderFilledColor: UIColor  = .green
+    @IBInspectable var mistake: String = ""
+    @IBInspectable var showMistake: Bool = true
+    @IBInspectable var borderColor: UIColor? {
         get {
             if let color = self.layer.borderColor {
                 return  UIColor(cgColor: color)
@@ -28,7 +27,7 @@ class ValidatableTextField: UITextField
             self.layer.borderColor = newValue?.cgColor
         }
     }
-    @IBInspectable public var borderWidth:CGFloat {
+    @IBInspectable var borderWidth: CGFloat {
         get {
             return self.layer.borderWidth
         }
@@ -36,7 +35,7 @@ class ValidatableTextField: UITextField
             self.layer.borderWidth = newValue
         }
     }
-    @IBInspectable public var cornerRadius:CGFloat {
+    @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -44,12 +43,6 @@ class ValidatableTextField: UITextField
             layer.cornerRadius = newValue
             layer.masksToBounds = newValue > 0
         }
-    }
-    
-    enum Status{
-        case empty
-        case filled
-        case mistake
     }
     
     private let label = UILabel()
@@ -87,17 +80,15 @@ class ValidatableTextField: UITextField
         self.label.text = self.mistake
     }
     
-    func updateStatus(_ status: Status){
+    func updateStatus(_ status: ValidationStatus){
         switch status {
         case .empty:
             self.borderColor = self.borderEmptyColor
-            self.label.isHidden = true
         case .filled:
             self.borderColor = self.borderFilledColor
-            self.label.isHidden = true
         case .mistake:
             self.borderColor = self.borderMistakeColor
-            self.label.isHidden = false
         }
+        self.label.isHidden = status != .mistake
     }
 }
