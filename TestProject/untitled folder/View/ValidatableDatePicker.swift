@@ -1,15 +1,14 @@
 //
-//  TextEditValidated.swift
+//  ValidatableDatePicker.swift
 //  TestProject
 //
-//  Created by Oleg on 27.05.2020.
+//  Created by Oleg on 05.06.2020.
 //  Copyright © 2020 Oleg. All rights reserved.
 //
 
 import UIKit
 
-class ValidatableTextField: UITextField
-{
+class ValidatableDatePicker: UIDatePicker{
     @IBInspectable var valueRequired: Bool = true
     @IBInspectable var borderMistakeColor: UIColor = .red
     @IBInspectable var borderEmptyColor: UIColor   = .lightGray

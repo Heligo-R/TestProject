@@ -19,12 +19,6 @@ enum ValidationStatus{
     case mistake
 }
 
-enum ValidationStatus{
-    case empty
-    case filled
-    case mistake
-}
-
 class ValidationManager
 {
     func verifyText(_ inputString: String?, expression: VerificationRegex?) -> ValidationStatus {
