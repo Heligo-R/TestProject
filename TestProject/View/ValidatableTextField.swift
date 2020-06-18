@@ -83,7 +83,9 @@ class ValidatableTextField: UITextField
     func updateStatus(_ status: ValidationStatus){
         switch status {
         case .empty:
-            self.borderColor = self.borderEmptyColor
+            if valueRequired {
+                self.borderColor = self.borderMistakeColor
+            }else { self.borderColor = self.borderEmptyColor }
         case .filled:
             self.borderColor = self.borderFilledColor
         case .mistake:

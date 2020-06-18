@@ -12,41 +12,29 @@ import MobileCoreServices
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var nameTextField: ValidatableTextField!
     @IBOutlet weak var surnameTextField: ValidatableTextField!
+    @IBOutlet weak var emailTextField: ValidatableTextField!
+    @IBOutlet weak var passwordTextField: ValidatableTextField!
     @IBOutlet weak var birthDatePicker: ValidatableDatePicker!
-    @IBOutlet weak var profileimage: UIImageView!
+    @IBOutlet weak var profileImageButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     
-    let tapRec = UITapGestureRecognizer()
     let validation = ValidationManager()
+    let localRepo = LocalRepo()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tapRec.addTarget(self, action: #selector(viewTapped(tapGestureRecognizer:)))
-        profileimage.addGestureRecognizer(tapRec)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let mediaType = info[.mediaType] as! String
-        if mediaType.isEqual(kUTTypeImage as String){
-            let image = info[.originalImage] as! UIImage
-            profileimage.image = image
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    private var imageLocal: String?
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {
-        if sender == nameTextField {
-            nameTextField.updateStatus(
-                validation.verifyText(sender.text, expression: .name))
+        switch sender {
+        case nameTextField:
+            nameTextField.updateStatus(validation.verifyText(sender.text, expression: .name))
+        case surnameTextField:
+            surnameTextField.updateStatus(validation.verifyText(sender.text, expression: .name))
+        case emailTextField:
+            emailTextField.updateStatus(validation.verifyText(sender.text, expression: .email))
+        case passwordTextField:
+            passwordTextField.updateStatus(validation.verifyText(sender.text, expression: .password))
+        default: break
         }
-        if sender == surnameTextField {
-            surnameTextField.updateStatus(
-                validation.verifyText(sender.text, expression: .name))
-        }
-        
     }
     
     @IBAction func datePicked(_ sender: UIDatePicker) {
@@ -55,12 +43,82 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-    @objc func viewTapped(tapGestureRecognizer: UITapGestureRecognizer){
-        if tapGestureRecognizer.view == profileimage{ imageSelectorSetup() }
+    @IBAction func buttonTouchUp(_ sender: UIButton) {
+        switch sender {
+        case profileImageButton:
+            imageSelectorSetup()
+        case registerButton:
+            guard let user = readFields() else { return }
+            if localRepo.userNotExist(user) {
+                localRepo.addEntity(user)
+                Alert(title: "Succeed!", message: "Registration completed!", buttonText: "Ok")
+            } else{
+                Alert(title: "Something wrong.", message: "User with same email already exists", buttonText: "Ok")
+            }
+        default:
+            break
+        }
+    }
+    
+    func Alert(title: String, message: String, buttonText: String, handler: ((UIAlertAction) -> Void)? = nil){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: buttonText, style: .default, handler: handler)
+        alert.addAction(dismissAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func readFields() -> User?{
+        var readingFailed = false
+        
+        func validateField (field: ValidatableTextField, expression: VerificationRegex){
+            let validationResult = validation.verifyText(field.text, expression: expression)
+            if validationResult != .filled { readingFailed = true }
+            field.updateStatus(validationResult)
+        }
+        
+        validateField(field: nameTextField, expression: .name)
+        validateField(field: surnameTextField, expression: .name)
+        validateField(field: emailTextField, expression: .email)
+        validateField(field: passwordTextField, expression: .password)
+        
+        let validationResult = validation.verifyAge(birthDatePicker.date, passAge: 16)
+        if validationResult != .filled { readingFailed = true }
+        birthDatePicker.updateStatus(validationResult)
+        
+        if readingFailed {
+            return nil
+        } else {
+            let user = User()
+            user.name = nameTextField.text!
+            user.surname = surnameTextField.text!
+            user.email = emailTextField.text!
+            user.password = passwordTextField.text!
+            user.birthDate = birthDatePicker.date
+            user.imagePath = imageLocal
+            return user
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let mediaType = info[.mediaType] as! String
+        if mediaType.isEqual(kUTTypeImage as String){
+            let image = info[.originalImage] as! UIImage
+            profileImageButton.setImage(image, for: .normal)
+            if let url = info[.imageURL] as? URL{
+                let imgName = url.lastPathComponent
+                let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+                imageLocal = documentDirectory?.appending(imgName)
+            }
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func imageSelectorSetup(){
-        let alertController = UIAlertController(title:"Select Image From", message: "", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title:"Select Image From", message: nil, preferredStyle: .alert)
         
         func alertActionHandler(type: UIImagePickerController.SourceType){
             if UIImagePickerController.isSourceTypeAvailable(type){
@@ -84,6 +142,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         alertController.addAction(cameraAction)
         alertController.addAction(libraryAction)
         alertController.addAction(cancelAction)
-        self.present(alertController, animated: true)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
