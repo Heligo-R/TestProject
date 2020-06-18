@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wsT-Rn-kps">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Registration View Controller-->
+        <scene sceneID="Tne-D8-U6P">
+            <objects>
+                <viewController id="wsT-Rn-kps" customClass="RegistrationViewController" customModule="TestProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4JY-xb-765">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UJ-d0-OHH">
+                                <rect key="frame" x="10" y="0.0" width="300" height="480"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-EW-low">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="468.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxH-Ah-5zz">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FWC-9Z-4R8" customClass="ValidatableTextField" customModule="TestProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28.5" width="300" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Enter your human name please"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="textFieldDoneEditingWithSender:" destination="wsT-Rn-kps" eventType="editingDidEnd" id="8Ng-ft-otz"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kfa-8s-02d" customClass="ValidatableTextField" customModule="TestProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="70.5" width="300" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Surname failed"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="textFieldDoneEditingWithSender:" destination="wsT-Rn-kps" eventType="editingDidEnd" id="8Ym-g3-LvS"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Birth date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOz-2H-yVI">
+                                                <rect key="frame" x="0.0" y="112.5" width="300" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-ax-JjB" customClass="ValidatableDatePicker" customModule="TestProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="141" width="300" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="D0n-1L-2LO"/>
+                                                    <constraint firstAttribute="height" constant="150" id="gdd-H8-xge"/>
+                                                </constraints>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-2650797079">
+                                                    <!--1917-01-01 11:28:41 +0000-->
+                                                </date>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="mistake" value="Your age is insignificant"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="datePicked:" destination="wsT-Rn-kps" eventType="valueChanged" id="cJb-gr-3iF"/>
+                                                </connections>
+                                            </datePicker>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wen-Sq-pHY">
+                                                <rect key="frame" x="0.0" y="299" width="300" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qtA-Wf-THg">
+                                                <rect key="frame" x="0.0" y="328.5" width="300" height="97.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="TZM-st-DWG"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIx-Gb-D9W">
+                                                <rect key="frame" x="0.0" y="435.5" width="300" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Register"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="OGg-uw-fVz"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fpO-EW-low" secondAttribute="trailing" id="1Bw-fo-S8X"/>
+                                    <constraint firstItem="fpO-EW-low" firstAttribute="centerX" secondItem="3UJ-d0-OHH" secondAttribute="centerX" id="7tM-0h-M0l"/>
+                                    <constraint firstItem="fpO-EW-low" firstAttribute="leading" secondItem="3UJ-d0-OHH" secondAttribute="leading" id="P4w-jE-jOU"/>
+                                    <constraint firstAttribute="bottom" secondItem="fpO-EW-low" secondAttribute="bottom" id="T0r-UE-UJt"/>
+                                    <constraint firstItem="fpO-EW-low" firstAttribute="top" secondItem="3UJ-d0-OHH" secondAttribute="top" id="l5m-G2-QH3"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="x5t-5n-gcU"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="e0Y-4T-HdL"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3UJ-d0-OHH" firstAttribute="bottom" secondItem="np0-Ox-vh1" secondAttribute="bottom" id="Fs7-oP-Jny"/>
+                            <constraint firstItem="3UJ-d0-OHH" firstAttribute="centerX" secondItem="4JY-xb-765" secondAttribute="centerX" id="tds-m3-Wjc"/>
+                            <constraint firstItem="3UJ-d0-OHH" firstAttribute="top" secondItem="np0-Ox-vh1" secondAttribute="top" id="whD-WS-fTL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="np0-Ox-vh1"/>
+                    </view>
+                    <connections>
+                        <outlet property="birthDatePicker" destination="8dh-ax-JjB" id="IkM-wz-91p"/>
+                        <outlet property="nameTextField" destination="FWC-9Z-4R8" id="2TH-ay-ZXj"/>
+                        <outlet property="profileimage" destination="qtA-Wf-THg" id="OWZ-oa-ecO"/>
+                        <outlet property="surnameTextField" destination="kfa-8s-02d" id="9kx-Pn-VIo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbN-IP-WaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.25" y="137.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.crop.square" catalog="system" width="32" height="32"/>
+    </resources>
+</document>
