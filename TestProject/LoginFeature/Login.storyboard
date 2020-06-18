@@ -21,7 +21,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6n-Ss-mqq">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wrong email or password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkn-47-Sda">
+                                        <rect key="frame" x="0.0" y="24.333333333333314" width="200" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Cd-oi-c2l" customClass="ValidatableTextField" customModule="TestProject" customModuleProvider="target">
@@ -67,6 +73,9 @@
                                 <rect key="frame" x="258" y="508.33333333333326" width="49" height="30"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="touchButton:" destination="9kT-tc-oMA" eventType="touchUpInside" id="5oG-hk-lat"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9o-zs-b0o">
                                 <rect key="frame" x="107" y="508.33333333333326" width="52" height="30"/>
@@ -89,8 +98,10 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="3Cd-oi-c2l" id="fP1-u9-888"/>
+                        <outlet property="errorLabel" destination="Nkn-47-Sda" id="qzx-T3-FfE"/>
                         <outlet property="loginStackFields" destination="05f-fS-cZH" id="zu4-qs-scU"/>
                         <outlet property="passwordTextField" destination="LLW-dO-Z7e" id="dP4-ba-nhE"/>
+                        <outlet property="submitButton" destination="LiF-aA-Qhh" id="Sqo-Am-fb1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jqp-ua-Jjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
