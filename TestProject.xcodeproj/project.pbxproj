@@ -18,10 +18,14 @@
 		7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FA23E455EA00ADDE05 /* Main.storyboard */; };
 		7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FD23E455F000ADDE05 /* Assets.xcassets */; };
 		7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */; };
+		7CA9C21724AD41D900926241 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA9C21624AD41D900926241 /* ChartView.swift */; };
 		7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */; };
 		7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */; };
 		7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */; };
 		7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE39633247E7D4000EF5FBD /* ViewController.swift */; };
+		7CFB249F24B3290D00BC9223 /* BarGraph.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB249E24B3290D00BC9223 /* BarGraph.storyboard */; };
+		7CFB24A124B3292700BC9223 /* BarGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB24A024B3292700BC9223 /* BarGraphViewController.swift */; };
+		7CFB24A324B32BA200BC9223 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB24A224B32BA200BC9223 /* Example.swift */; };
 		7CFB866C2485190A00DF191B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB866B2485190A00DF191B /* LoginViewController.swift */; };
 		7CFB866E2485193A00DF191B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB866D2485193A00DF191B /* Login.storyboard */; };
 /* End PBXBuildFile section */
@@ -40,10 +44,14 @@
 		7CA494FD23E455F000ADDE05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CA4950023E455F000ADDE05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA4950223E455F000ADDE05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CA9C21624AD41D900926241 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTextField.swift; sourceTree = "<group>"; };
 		7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationUtil.swift; sourceTree = "<group>"; };
 		7CE39633247E7D4000EF5FBD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7CFB249E24B3290D00BC9223 /* BarGraph.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BarGraph.storyboard; sourceTree = "<group>"; };
+		7CFB24A024B3292700BC9223 /* BarGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphViewController.swift; sourceTree = "<group>"; };
+		7CFB24A224B32BA200BC9223 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		7CFB866B2485190A00DF191B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7CFB866D2485193A00DF191B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		BC083C6DCCEFC8FC6690E0E7 /* Pods_TestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +116,7 @@
 		7CA494F323E455EA00ADDE05 /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
+				7CFB249D24B328DB00BC9223 /* BarGraph */,
 				7C44486A249B6D2700A7A2B6 /* Api */,
 				7C4448662499641100A7A2B6 /* Model */,
 				7C2A853B2490184400E97745 /* Registration */,
@@ -131,6 +140,7 @@
 			children = (
 				7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */,
 				7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */,
+				7CFB24A224B32BA200BC9223 /* Example.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -147,8 +157,18 @@
 			children = (
 				7C2A8540249018D400E97745 /* ValidatableDatePicker.swift */,
 				7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */,
+				7CA9C21624AD41D900926241 /* ChartView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7CFB249D24B328DB00BC9223 /* BarGraph */ = {
+			isa = PBXGroup;
+			children = (
+				7CFB249E24B3290D00BC9223 /* BarGraph.storyboard */,
+				7CFB24A024B3292700BC9223 /* BarGraphViewController.swift */,
+			);
+			path = BarGraph;
 			sourceTree = "<group>";
 		};
 		7CFB866A2485172100DF191B /* LoginFeature */ = {
@@ -240,6 +260,7 @@
 				7CFB866E2485193A00DF191B /* Login.storyboard in Resources */,
 				7C2A853D2490187A00E97745 /* Registration.storyboard in Resources */,
 				7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */,
+				7CFB249F24B3290D00BC9223 /* BarGraph.storyboard in Resources */,
 				7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */,
 				7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */,
 			);
@@ -298,13 +319,16 @@
 				7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */,
 				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,
 				7C2A853F2490187E00E97745 /* RegistrationViewController.swift in Sources */,
+				7CFB24A124B3292700BC9223 /* BarGraphViewController.swift in Sources */,
 				7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */,
 				7CFB866C2485190A00DF191B /* LoginViewController.swift in Sources */,
 				7C4448682499642200A7A2B6 /* User.swift in Sources */,
+				7CFB24A324B32BA200BC9223 /* Example.swift in Sources */,
 				7CE39634247E7D4000EF5FBD /* ViewController.swift in Sources */,
 				7CA494F523E455EA00ADDE05 /* AppDelegate.swift in Sources */,
 				7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */,
 				7C2A8541249018D400E97745 /* ValidatableDatePicker.swift in Sources */,
+				7CA9C21724AD41D900926241 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
