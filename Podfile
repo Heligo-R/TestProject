@@ -4,6 +4,9 @@
 target 'TestProject' do
   use_frameworks!
   pod 'RealmSwift'
+
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
   # Pods for TestProject
 
 end

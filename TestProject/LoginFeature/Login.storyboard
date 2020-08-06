@@ -84,14 +84,23 @@
                                     <segue destination="o2k-4j-YHu" kind="show" id="hxj-0i-xiU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQd-sT-9QH">
+                                <rect key="frame" x="179" y="832" width="56" height="30"/>
+                                <state key="normal" title="Support"/>
+                                <connections>
+                                    <segue destination="89x-cE-250" kind="show" id="nqE-8T-CQh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="05f-fS-cZH" firstAttribute="centerX" secondItem="mPH-83-xoF" secondAttribute="centerX" id="26x-oB-KOb"/>
+                            <constraint firstItem="jQd-sT-9QH" firstAttribute="centerX" secondItem="05f-fS-cZH" secondAttribute="centerX" id="3Nd-bw-Lev"/>
                             <constraint firstItem="LiF-aA-Qhh" firstAttribute="trailing" secondItem="05f-fS-cZH" secondAttribute="trailing" id="BKd-ty-B8H"/>
                             <constraint firstItem="a9o-zs-b0o" firstAttribute="leading" secondItem="05f-fS-cZH" secondAttribute="leading" id="NnK-hu-MRC"/>
                             <constraint firstItem="LiF-aA-Qhh" firstAttribute="top" secondItem="05f-fS-cZH" secondAttribute="bottom" constant="8" id="SUY-d5-2jD"/>
                             <constraint firstItem="a9o-zs-b0o" firstAttribute="top" secondItem="05f-fS-cZH" secondAttribute="bottom" constant="8" id="Vt0-w4-t32"/>
+                            <constraint firstItem="jQd-sT-9QH" firstAttribute="bottom" secondItem="Na2-Xg-Fww" secondAttribute="bottom" id="aTI-cj-j0d"/>
                             <constraint firstItem="05f-fS-cZH" firstAttribute="centerY" secondItem="mPH-83-xoF" secondAttribute="centerY" id="rGm-UI-zrz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Na2-Xg-Fww"/>
@@ -117,6 +126,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBq-GW-OWD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="330" y="117"/>
+        </scene>
+        <!--Support-->
+        <scene sceneID="R4v-7A-JYv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Support" id="89x-cE-250" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JDI-25-Rzi"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gab-sd-tjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="297" y="300"/>
         </scene>
     </scenes>
 </document>
