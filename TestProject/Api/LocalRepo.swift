@@ -9,12 +9,19 @@
 import Foundation
 import RealmSwift
 
-class LocalRepo {
+final class LocalRepo {    
     func addEntity<T: Object>(_ entity: T) {
         let realm = try! Realm()
         try! realm.write {
             realm.add(entity)
         }
+    }
+    
+    func getEntity<T: Object>(token: String) -> T? {
+        let realm = try! Realm()
+        let entitiesFound = realm.objects(T.self).filter("token == '" + token + "'")
+
+        return entitiesFound.first
     }
     
     func getUser(_ credentials: (String, String)) -> User? {

@@ -21,6 +21,7 @@
 		7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FA23E455EA00ADDE05 /* Main.storyboard */; };
 		7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FD23E455F000ADDE05 /* Assets.xcassets */; };
 		7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */; };
+		7CA5E1FB24E1991500E0A4E2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5E1FA24E1991500E0A4E2 /* Model.swift */; };
 		7CA9C21724AD41D900926241 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA9C21624AD41D900926241 /* ChartView.swift */; };
 		7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */; };
 		7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */; };
@@ -47,6 +48,7 @@
 		7CA494FD23E455F000ADDE05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CA4950023E455F000ADDE05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA4950223E455F000ADDE05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CA5E1FA24E1991500E0A4E2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7CA9C21624AD41D900926241 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTextField.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				7C4448672499642200A7A2B6 /* User.swift */,
+				7CA5E1FA24E1991500E0A4E2 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA5E1FB24E1991500E0A4E2 /* Model.swift in Sources */,
 				7C44486C249B6D5D00A7A2B6 /* LocalRepo.swift in Sources */,
 				7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */,
 				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,

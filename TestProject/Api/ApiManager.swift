@@ -10,26 +10,46 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class ApiManager {
-    let disposeBag = DisposeBag()
-    
+final class ApiManager {
     private let urlSession = URLSession(configuration: .default)
-    private let apiPrefix = "https://google.com"
+    private let apiPrefix = "https://precision.dev.thrive.io/v1"
+    private let localRepo = LocalRepo()
     
-    static let shared = ApiManager()
-    
-    private init() {}
-    
-    func processData(action:@escaping (Data, HTTPURLResponse) -> Void) {
-        response(request: URLRequest(url: URL(string: apiPrefix)!))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { result in
-                action(result.data, result.response)
-            })
-            .disposed(by: disposeBag)
+    func getRequest<T: Decodable>(endpoint: String, authorized: Bool = false, parameters: [(String, String)]? = nil) -> Observable<(response: HTTPURLResponse, result: T)>? {
+        var urlString = apiPrefix + endpoint
+        
+        if let params = parameters, params.count > 0 {
+            urlString = urlString + "?"
+            
+            if let first = params.first {
+                urlString = urlString + first.0 + "=" + first.1
+            }
+            
+            for param in params.dropFirst() {
+                urlString = urlString + "&" + param.0 + "=" + param.1
+            }
+        }
+        
+        guard let url = URL(string: urlString) else { return nil }
+        
+        let urlRequest = makeURLRequestWithHeader(url: url, method: .get, authorized: authorized)
+        
+        return response(request: urlRequest)
     }
     
-    func response(request: URLRequest) -> Observable<(response: HTTPURLResponse, data: Data)> {
+    func postRequest<T: Decodable, PostObject: Encodable>(endpoint: String, toPost: PostObject, authorized: Bool = false) -> Observable<(response: HTTPURLResponse, result: T)>? {
+        let urlString = apiPrefix + endpoint
+        guard let url = URL(string: urlString) else { return nil }
+        
+        var urlRequest = makeURLRequestWithHeader(url: url, method: .get, authorized: authorized)
+        
+        guard let encodedData = try? JSONEncoder().encode(toPost) else { return nil }
+        urlRequest.httpBody = encodedData
+        
+        return response(request: urlRequest)
+    }
+    
+    func response<T: Decodable> (request: URLRequest) -> Observable<(response: HTTPURLResponse, result: T)> {
         return Observable.create { observer in
             let task = self.urlSession.dataTask(with: request) { (data, response, error) in
 
@@ -42,8 +62,10 @@ class ApiManager {
                     observer.on(.error(RxCocoaURLError.nonHTTPResponse(response: response)))
                     return
                 }
-
-                observer.on(.next((httpResponse, data)))
+                
+                guard let decodedResult: T = try? JSONDecoder().decode(T.self, from: data) else { return }
+                
+                observer.on(.next((httpResponse, decodedResult)))
                 observer.on(.completed)
             }
 
@@ -54,4 +76,22 @@ class ApiManager {
             }
         }
     }
+    
+    func makeURLRequestWithHeader(url: URL, method: HttpMethod, authorized: Bool = false) -> URLRequest {
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+        
+        if authorized, let savedKey = localRepo.getEntity(token: "authorizationKey") as? SimpleEntity {
+            urlRequest.addValue("Bearer " + savedKey.value, forHTTPHeaderField: "Authorization")
+        }
+        
+        return urlRequest
+    }
+}
+
+enum HttpMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
 }

@@ -10,18 +10,19 @@ import UIKit
 import WebKit
 import RxSwift
 
-class SupportViewController: UIViewController {
+final class SupportViewController: UIViewController {
 
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet private var webView: WKWebView!
     
-    let apiManager = ApiManager.shared
+    private let disposeBag = DisposeBag()
+    private let apiManager = ApiManager()
     
     override func viewDidLoad() {
-        apiManager.processData{ data, response in
+        /*apiManager.processData{ data, response in
             if let mimeType = response.mimeType, mimeType == "text/html",
                 let string = String(data: data, encoding: .ascii) {
                 self.webView.loadHTMLString(string, baseURL: nil)
             }
-        }
+        }*/
     }
 }
