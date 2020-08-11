@@ -11,18 +11,24 @@ import WebKit
 import RxSwift
 
 final class SupportViewController: UIViewController {
-
-    @IBOutlet private var webView: WKWebView!
+    @IBOutlet private weak var penLabel: UILabel!
     
     private let disposeBag = DisposeBag()
     private let apiManager = ApiManager()
+    private let localRepo = LocalRepo()
     
     override func viewDidLoad() {
-        /*apiManager.processData{ data, response in
-            if let mimeType = response.mimeType, mimeType == "text/html",
-                let string = String(data: data, encoding: .ascii) {
-                self.webView.loadHTMLString(string, baseURL: nil)
-            }
-        }*/
+        let loginForm = LoginForm(login: "user@user.user", password: "user")
+        let authObserver: Observable<(response: HTTPURLResponse, result: AuthData)>? = apiManager.postRequest(endpoint: "/auth/login", toPost: loginForm)
+        authObserver?.observeOn(MainScheduler.instance).subscribe(onNext: { _, result  in
+            let entity = SimpleEntity()
+            entity.token = "authorizationKey"
+            entity.value = String(result.id)
+            self.localRepo.addEntity(entity)
+        }).disposed(by: disposeBag)
+        
+        apiManager.getRequest(endpoint: "/pen/get/1", authorized: true)?.observeOn(MainScheduler.instance).subscribe(onNext: { _, result  in
+            self.penLabel.text = (result as Pen).pen_id_name
+        }).disposed(by: disposeBag)
     }
 }

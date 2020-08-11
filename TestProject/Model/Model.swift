@@ -12,7 +12,7 @@ protocol TokenedEntity {
     dynamic var token: String { get set }
 }
 
-class SimpleEntity: Object, TokenedEntity {
+class SimpleEntity: Object {
     @objc dynamic var value = ""
     @objc dynamic var token = ""
 }

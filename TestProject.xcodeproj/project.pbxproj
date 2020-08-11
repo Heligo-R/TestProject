@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B74882CD1BEBE02A56B1A6E /* Pods_TestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC083C6DCCEFC8FC6690E0E7 /* Pods_TestProject.framework */; };
+		7C0979D424E2D6D800D46E71 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0979D324E2D6D800D46E71 /* Login.swift */; };
+		7C0979D624E2D89500D46E71 /* Pens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0979D524E2D89500D46E71 /* Pens.swift */; };
 		7C2A853D2490187A00E97745 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C2A853C2490187A00E97745 /* Registration.storyboard */; };
 		7C2A853F2490187E00E97745 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A853E2490187E00E97745 /* RegistrationViewController.swift */; };
 		7C2A8541249018D400E97745 /* ValidatableDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8540249018D400E97745 /* ValidatableDatePicker.swift */; };
@@ -33,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		0D18DFFF187D9470EF1B604E /* Pods-TestProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProject.debug.xcconfig"; path = "Target Support Files/Pods-TestProject/Pods-TestProject.debug.xcconfig"; sourceTree = "<group>"; };
+		7C0979D324E2D6D800D46E71 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		7C0979D524E2D89500D46E71 /* Pens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pens.swift; sourceTree = "<group>"; };
 		7C2A853C2490187A00E97745 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		7C2A853E2490187E00E97745 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		7C2A8540249018D400E97745 /* ValidatableDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatableDatePicker.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 			children = (
 				7C4448672499642200A7A2B6 /* User.swift */,
 				7CA5E1FA24E1991500E0A4E2 /* Model.swift */,
+				7C0979D324E2D6D800D46E71 /* Login.swift */,
+				7C0979D524E2D89500D46E71 /* Pens.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,6 +339,8 @@
 				7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */,
 				7C2A8541249018D400E97745 /* ValidatableDatePicker.swift in Sources */,
 				7CA9C21724AD41D900926241 /* ChartView.swift in Sources */,
+				7C0979D624E2D89500D46E71 /* Pens.swift in Sources */,
+				7C0979D424E2D6D800D46E71 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

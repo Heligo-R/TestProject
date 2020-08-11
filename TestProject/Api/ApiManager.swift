@@ -29,10 +29,10 @@ final class ApiManager {
                 urlString = urlString + "&" + param.0 + "=" + param.1
             }
         }
+        guard let escapedString = urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed) else { return nil }
+        guard let url = URL(string: escapedString) else { return nil }
         
-        guard let url = URL(string: urlString) else { return nil }
-        
-        let urlRequest = makeURLRequestWithHeader(url: url, method: .get, authorized: authorized)
+        let urlRequest = makeURLRequestWithHeader(url: url, method: .get, header: prepareHeader(authorized: authorized))
         
         return response(request: urlRequest)
     }
@@ -41,7 +41,7 @@ final class ApiManager {
         let urlString = apiPrefix + endpoint
         guard let url = URL(string: urlString) else { return nil }
         
-        var urlRequest = makeURLRequestWithHeader(url: url, method: .get, authorized: authorized)
+        var urlRequest = makeURLRequestWithHeader(url: url, method: .get, header: prepareHeader(authorized: authorized))
         
         guard let encodedData = try? JSONEncoder().encode(toPost) else { return nil }
         urlRequest.httpBody = encodedData
@@ -77,12 +77,22 @@ final class ApiManager {
         }
     }
     
-    func makeURLRequestWithHeader(url: URL, method: HttpMethod, authorized: Bool = false) -> URLRequest {
+    private func prepareHeader(authorized: Bool = false) -> [(String, String)] {
+        var httpHeaders: [(String, String)] = []
+        if authorized, let savedKey = localRepo.getSimpleEntity(token: "authorizationKey") {
+                   httpHeaders.append(("Authorization", "Bearer" + savedKey.value))
+        }
+        return httpHeaders
+    }
+    
+    private func makeURLRequestWithHeader(url: URL, method: HttpMethod, header: [(String, String)]? = nil) -> URLRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
-        if authorized, let savedKey = localRepo.getEntity(token: "authorizationKey") as? SimpleEntity {
-            urlRequest.addValue("Bearer " + savedKey.value, forHTTPHeaderField: "Authorization")
+        if let headerValues = header, headerValues.count > 0 {
+            for (key, value) in headerValues {
+                urlRequest.addValue(value, forHTTPHeaderField: key)
+            }
         }
         
         return urlRequest

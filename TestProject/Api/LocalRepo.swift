@@ -17,9 +17,9 @@ final class LocalRepo {
         }
     }
     
-    func getEntity<T: Object>(token: String) -> T? {
+    func getSimpleEntity(token: String) -> SimpleEntity? {
         let realm = try! Realm()
-        let entitiesFound = realm.objects(T.self).filter("token == '" + token + "'")
+        let entitiesFound = realm.objects(SimpleEntity.self).filter("token == '" + token + "'")
 
         return entitiesFound.first
     }
