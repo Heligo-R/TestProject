@@ -6,14 +6,20 @@
 //  Copyright © 2020 Oleg. All rights reserved.
 //
 
-struct LoginForm: Codable {
-    var login: String
-    var password: String
+struct LoginData: Codable {
+    let login: String
+    let password: String
 }
 
 struct AuthData: Codable {
-    var id: Int
-    var user_id: Int
-    var expires_at: String
-    var token: String
+    enum CodingKeys: String, CodingKey {
+        case id, token
+        case userId = "user_id"
+        case expiresAt = "expires_at"
+    }
+    
+    let id: Int
+    let userId: Int
+    let expiresAt: String
+    let token: String
 }

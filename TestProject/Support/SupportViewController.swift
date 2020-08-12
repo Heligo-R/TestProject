@@ -14,21 +14,25 @@ final class SupportViewController: UIViewController {
     @IBOutlet private weak var penLabel: UILabel!
     
     private let disposeBag = DisposeBag()
-    private let apiManager = ApiManager()
+    private let api = Api()
     private let localRepo = LocalRepo()
     
     override func viewDidLoad() {
-        let loginForm = LoginForm(login: "user@user.user", password: "user")
-        let authObserver: Observable<(response: HTTPURLResponse, result: AuthData)>? = apiManager.postRequest(endpoint: "/auth/login", toPost: loginForm)
-        authObserver?.observeOn(MainScheduler.instance).subscribe(onNext: { _, result  in
-            let entity = SimpleEntity()
-            entity.token = "authorizationKey"
-            entity.value = String(result.id)
-            self.localRepo.addEntity(entity)
-        }).disposed(by: disposeBag)
-        
-        apiManager.getRequest(endpoint: "/pen/get/1", authorized: true)?.observeOn(MainScheduler.instance).subscribe(onNext: { _, result  in
-            self.penLabel.text = (result as Pen).pen_id_name
-        }).disposed(by: disposeBag)
+        let loginData = LoginData(login: "user@user.user", password: "user")
+        api.login(with: loginData).flatMap{ result -> Observable<[Pen]> in
+            UserDefaults.standard.set(result.token, forKey: "authToken")
+            print(result)
+            return self.api.getPensList()
+        }.flatMap{ pensList -> Observable<Pen> in
+            return self.api.getPen(byId: pensList[0].id)
+        }.subscribe{ event in
+            switch event {
+            case .next(let penResult):
+                print(penResult)
+            case .error(let error):
+                print(error)
+            default: break
+            }
+        }.disposed(by: disposeBag)
     }
 }

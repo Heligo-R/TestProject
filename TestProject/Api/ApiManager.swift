@@ -15,41 +15,41 @@ final class ApiManager {
     private let apiPrefix = "https://precision.dev.thrive.io/v1"
     private let localRepo = LocalRepo()
     
-    func getRequest<T: Decodable>(endpoint: String, authorized: Bool = false, parameters: [(String, String)]? = nil) -> Observable<(response: HTTPURLResponse, result: T)>? {
+    func makeGetRequest<T: Decodable>(endpoint: String, isAuthorized: Bool = false, parameters: [(String, String)]? = nil) -> Observable<T> {
         var urlString = apiPrefix + endpoint
         
         if let params = parameters, params.count > 0 {
-            urlString = urlString + "?"
+            urlString = "\(urlString)?"
             
             if let first = params.first {
-                urlString = urlString + first.0 + "=" + first.1
+                urlString = "\(urlString)\(first.0)=\(first.1)"
             }
             
             for param in params.dropFirst() {
-                urlString = urlString + "&" + param.0 + "=" + param.1
+                urlString = "\(urlString)&\(param.0)=\(param.1)"
             }
         }
-        guard let escapedString = urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed) else { return nil }
-        guard let url = URL(string: escapedString) else { return nil }
+        guard let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return makeObservableError(.urlComposingError) }
+        guard let url = URL(string: escapedString) else { return makeObservableError(.urlComposingError) }
         
-        let urlRequest = makeURLRequestWithHeader(url: url, method: .get, header: prepareHeader(authorized: authorized))
+        let urlRequest = makeURLRequestWithHeader(url: url, method: .get, header: prepareHeader(isAuthorized: isAuthorized))
         
-        return response(request: urlRequest)
+        return proceedResponse(request: urlRequest)
     }
     
-    func postRequest<T: Decodable, PostObject: Encodable>(endpoint: String, toPost: PostObject, authorized: Bool = false) -> Observable<(response: HTTPURLResponse, result: T)>? {
+    func makePostRequest<T: Decodable, PostObject: Encodable>(endpoint: String, toPost: PostObject, isAuthorized: Bool = false) -> Observable<T> {
         let urlString = apiPrefix + endpoint
-        guard let url = URL(string: urlString) else { return nil }
+        guard let url = URL(string: urlString) else { return makeObservableError(.urlComposingError) }
         
-        var urlRequest = makeURLRequestWithHeader(url: url, method: .get, header: prepareHeader(authorized: authorized))
+        var urlRequest = makeURLRequestWithHeader(url: url, method: .post, header: prepareHeader(isAuthorized: isAuthorized, isJson: true))
         
-        guard let encodedData = try? JSONEncoder().encode(toPost) else { return nil }
+        guard let encodedData = try? JSONEncoder().encode(toPost) else { return makeObservableError(.jsonEncodingError) }
         urlRequest.httpBody = encodedData
         
-        return response(request: urlRequest)
+        return proceedResponse(request: urlRequest)
     }
     
-    func response<T: Decodable> (request: URLRequest) -> Observable<(response: HTTPURLResponse, result: T)> {
+    func proceedResponse<T: Decodable> (request: URLRequest) -> Observable<T> {
         return Observable.create { observer in
             let task = self.urlSession.dataTask(with: request) { (data, response, error) in
 
@@ -63,12 +63,23 @@ final class ApiManager {
                     return
                 }
                 
-                guard let decodedResult: T = try? JSONDecoder().decode(T.self, from: data) else { return }
+                if httpResponse.statusCode != 200 {
+                    guard let decodedError: ErrorMessage = try? JSONDecoder().decode(ErrorMessage.self, from: data) else {
+                        observer.on(.error(ErrorMessages.jsonEncodingError))
+                        return
+                    }
+                    observer.on(.error(decodedError))
+                    return
+                }
                 
-                observer.on(.next((httpResponse, decodedResult)))
+                guard let decodedResult: T = try? JSONDecoder().decode(T.self, from: data) else {
+                    observer.on(.error(ErrorMessages.jsonEncodingError))
+                    return
+                }
+                
+                observer.on(.next(decodedResult))
                 observer.on(.completed)
             }
-
             task.resume()
 
             return Disposables.create {
@@ -77,11 +88,20 @@ final class ApiManager {
         }
     }
     
-    private func prepareHeader(authorized: Bool = false) -> [(String, String)] {
+    private func makeObservableError<T>(_ error: ErrorMessages) -> Observable<T>{
+       return Observable.error(error)
+    }
+    
+    private func prepareHeader(isAuthorized: Bool = false, isJson: Bool = false) -> [(String, String)] {
         var httpHeaders: [(String, String)] = []
-        if authorized, let savedKey = localRepo.getSimpleEntity(token: "authorizationKey") {
-                   httpHeaders.append(("Authorization", "Bearer" + savedKey.value))
+   
+        if isAuthorized, let savedToken = UserDefaults.standard.string(forKey: "authToken") {
+            httpHeaders.append(("Authorization", "Bearer \(savedToken)"))
         }
+        if isJson {
+            httpHeaders.append(("Content-Type", "application/json"))
+        }
+        httpHeaders.append(("Accept", "*/*"))
         return httpHeaders
     }
     
@@ -89,10 +109,8 @@ final class ApiManager {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
-        if let headerValues = header, headerValues.count > 0 {
-            for (key, value) in headerValues {
-                urlRequest.addValue(value, forHTTPHeaderField: key)
-            }
+        _ = header?.map{ (key, value) in
+            urlRequest.addValue(value, forHTTPHeaderField: key)
         }
         
         return urlRequest
