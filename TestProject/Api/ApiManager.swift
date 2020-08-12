@@ -15,6 +15,11 @@ final class ApiManager {
     private let apiPrefix = "https://precision.dev.thrive.io/v1"
     private let localRepo = LocalRepo()
     
+    func makeGetRequest(url: URL) -> Observable<Data> {
+        let urlRequest = makeURLRequestWithHeader(url: url, method: .get)
+        return proceedResponse(request: urlRequest)
+    }
+    
     func makeGetRequest<T: Decodable>(endpoint: String, isAuthorized: Bool = false, parameters: [(String, String)]? = nil) -> Observable<T> {
         var urlString = apiPrefix + endpoint
         
@@ -88,6 +93,36 @@ final class ApiManager {
         }
     }
     
+    func proceedResponse(request: URLRequest) -> Observable<Data> {
+        return Observable.create { observer in
+            let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                
+                guard let response = response, let data = data else {
+                    observer.on(.error(error ?? RxCocoaURLError.unknown))
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    observer.on(.error(RxCocoaURLError.nonHTTPResponse(response: response)))
+                    return
+                }
+                
+                if httpResponse.statusCode != 200 {
+                    observer.on(.error(ErrorMessages.httpError))
+                    return
+                }
+                
+                observer.on(.next(data))
+                observer.on(.completed)
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
     private func makeObservableError<T>(_ error: ErrorMessages) -> Observable<T>{
        return Observable.error(error)
     }
@@ -95,12 +130,10 @@ final class ApiManager {
     private func prepareHeader(isAuthorized: Bool = false, isJson: Bool = false) -> [(String, String)] {
         var httpHeaders: [(String, String)] = []
    
-        if isAuthorized, let savedToken = UserDefaults.standard.string(forKey: "authToken") {
+        if isAuthorized, let savedToken = UserDefaults.standard.string(forKey: DefaultNames.authToken) {
             httpHeaders.append(("Authorization", "Bearer \(savedToken)"))
         }
-        if isJson {
-            httpHeaders.append(("Content-Type", "application/json"))
-        }
+        httpHeaders.append(("Content-Type", "application/json"))
         httpHeaders.append(("Accept", "*/*"))
         return httpHeaders
     }
@@ -109,8 +142,8 @@ final class ApiManager {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
-        _ = header?.map{ (key, value) in
-            urlRequest.addValue(value, forHTTPHeaderField: key)
+        header?.forEach{ (key, value) in
+        urlRequest.addValue(value, forHTTPHeaderField: key)
         }
         
         return urlRequest

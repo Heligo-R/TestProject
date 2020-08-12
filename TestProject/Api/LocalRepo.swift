@@ -9,6 +9,10 @@
 import Foundation
 import RealmSwift
 
+struct DefaultNames {
+    static let authToken = "authToken" 
+}
+
 final class LocalRepo {    
     func addEntity<T: Object>(_ entity: T) {
         let realm = try! Realm()

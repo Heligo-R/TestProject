@@ -23,4 +23,12 @@ final class Api {
     func getPen(byId: Int) -> Observable<Pen> {
         return apiManager.makeGetRequest(endpoint: "/pen/get/\(byId)", isAuthorized: true)
     }
+    
+    func getFrames() -> Observable<[Frame]> {
+       return apiManager.makeGetRequest(endpoint: "/camera/frames/1/1596088516", isAuthorized: true)
+    }
+    
+    func getImageData(url: URL) -> Observable<Data> {
+        return apiManager.makeGetRequest(url: url)
+    }
 }

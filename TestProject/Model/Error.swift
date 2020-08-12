@@ -17,4 +17,5 @@ struct ErrorMessage: Codable, Error {
 enum ErrorMessages: Error {
     case urlComposingError
     case jsonEncodingError
+    case httpError
 }

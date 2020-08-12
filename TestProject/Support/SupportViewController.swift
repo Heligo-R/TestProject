@@ -20,7 +20,7 @@ final class SupportViewController: UIViewController {
     override func viewDidLoad() {
         let loginData = LoginData(login: "user@user.user", password: "user")
         api.login(with: loginData).flatMap{ result -> Observable<[Pen]> in
-            UserDefaults.standard.set(result.token, forKey: "authToken")
+            UserDefaults.standard.set(result.token, forKey: DefaultNames.authToken)
             print(result)
             return self.api.getPensList()
         }.flatMap{ pensList -> Observable<Pen> in

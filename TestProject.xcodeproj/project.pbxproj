@@ -27,6 +27,7 @@
 		7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */; };
 		7CA5E1FB24E1991500E0A4E2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5E1FA24E1991500E0A4E2 /* Model.swift */; };
 		7CA9C21724AD41D900926241 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA9C21624AD41D900926241 /* ChartView.swift */; };
+		7CAFAEA924E44AF300ACF036 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFAEA824E44AF300ACF036 /* Camera.swift */; };
 		7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */; };
 		7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */; };
 		7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */; };
@@ -58,6 +59,7 @@
 		7CA4950223E455F000ADDE05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CA5E1FA24E1991500E0A4E2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7CA9C21624AD41D900926241 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		7CAFAEA824E44AF300ACF036 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		7CE3962A247E5CC800EF5FBD /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		7CE3962D247E76DF00EF5FBD /* ValidatableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTextField.swift; sourceTree = "<group>"; };
 		7CE3962F247E781B00EF5FBD /* VerificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationUtil.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				7C0979D324E2D6D800D46E71 /* Login.swift */,
 				7C0979D524E2D89500D46E71 /* Pens.swift */,
 				7C0979D924E30CA600D46E71 /* Error.swift */,
+				7CAFAEA824E44AF300ACF036 /* Camera.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				7CA494F723E455EA00ADDE05 /* SceneDelegate.swift in Sources */,
 				7C2A8541249018D400E97745 /* ValidatableDatePicker.swift in Sources */,
 				7CA9C21724AD41D900926241 /* ChartView.swift in Sources */,
+				7CAFAEA924E44AF300ACF036 /* Camera.swift in Sources */,
 				7C0979D624E2D89500D46E71 /* Pens.swift in Sources */,
 				7C0979D424E2D6D800D46E71 /* Login.swift in Sources */,
 				7C0979DA24E30CA600D46E71 /* Error.swift in Sources */,
