@@ -39,7 +39,7 @@
                         <viewLayoutGuide key="safeArea" id="ZHO-bG-NsZ"/>
                     </view>
                     <connections>
-                        <outlet property="penLabel" destination="lpp-7n-4SV" id="hE3-S0-wYf"/>
+                        <outlet property="imageView" destination="UX3-Sa-rS9" id="gSH-fz-eI1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzg-E8-U6g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

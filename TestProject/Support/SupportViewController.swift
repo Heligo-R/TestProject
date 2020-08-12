@@ -11,7 +11,7 @@ import WebKit
 import RxSwift
 
 final class SupportViewController: UIViewController {
-    @IBOutlet private weak var penLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
     
     private let disposeBag = DisposeBag()
     private let api = Api()
@@ -29,6 +29,19 @@ final class SupportViewController: UIViewController {
             switch event {
             case .next(let penResult):
                 print(penResult)
+            case .error(let error):
+                print(error)
+            default: break
+            }
+        }.disposed(by: disposeBag)
+        
+        api.getFrames().flatMap{ frames -> Observable<Data> in
+            return self.api.getImageData(url: frames[0].url)
+        }.observeOn(MainScheduler.instance)
+        .subscribe{ event in
+            switch event {
+            case .next(let imageData):
+                self.imageView.image = UIImage(data: imageData)
             case .error(let error):
                 print(error)
             default: break
