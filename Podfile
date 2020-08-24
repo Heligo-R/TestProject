@@ -7,6 +7,7 @@ target 'TestProject' do
 
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'MaterialComponents/Tabs'
   # Pods for TestProject
 
 end
