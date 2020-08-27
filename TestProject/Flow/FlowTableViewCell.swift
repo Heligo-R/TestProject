@@ -8,12 +8,12 @@
 
 import UIKit
 
-struct Defaults {
+struct FlowCellDefaults {
    static let defaultFlowCellState: FlowCellState = .details
 }
 
 protocol FlowCellDelegate {
-    func manageExpandedCells(with indexPath: IndexPath)
+    func manageExpandedCells(with row: Int)
     func updateTable()
 }
 
@@ -23,13 +23,13 @@ final class FlowTableViewCell: UITableViewCell {
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemNameLabel: UILabel!
 
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private weak var containerView: UIView!
     
-    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet private weak var moreButton: UIButton!
     @IBOutlet weak var desctiptionLabel: UILabel!
     
-    @IBOutlet weak var selectionBarView: UIView!
-    @IBOutlet weak var selectableContainerView: UIView!
+    @IBOutlet private weak var selectionBarView: UIView!
+    @IBOutlet private weak var selectableContainerView: UIView!
     
     let selectionBar = SelectionBarView()
     let detailsView = DetailsView()
@@ -51,11 +51,11 @@ final class FlowTableViewCell: UITableViewCell {
             selectionBar.connectConstraintsToContainer(selectionBarView, anchors: [.top, .leading, .trailing])
             selectionBar.bottomAnchor.constraint(lessThanOrEqualTo: selectionBarView.bottomAnchor).isActive = true
             
-            if let indexPath = model?.indexPath {
-                delegate?.manageExpandedCells(with: indexPath)
+            if let cellRow = model?.cellRow {
+                delegate?.manageExpandedCells(with: cellRow)
             }
     
-            proceedBarSelection(selectedState: Defaults.defaultFlowCellState)
+            proceedBarSelection(selectedState: FlowCellDefaults.defaultFlowCellState)
         default: break
         }
     }
@@ -67,7 +67,7 @@ final class FlowTableViewCell: UITableViewCell {
         switchCellMode(isSelectionMode: false)
     }
     
-    func deselectState() {
+    private func deselectState() {
         switch model?.selectedState {
         case .details: detailsView.removeFromSuperview()
         case .tag: break
@@ -78,7 +78,7 @@ final class FlowTableViewCell: UITableViewCell {
         model?.selectedState = .none
     }
     
-    func switchCellMode(isSelectionMode: Bool) {
+    private func switchCellMode(isSelectionMode: Bool) {
         moreButton.isHidden = isSelectionMode
         desctiptionLabel.isHidden = isSelectionMode
         selectionBarView.isHidden = !isSelectionMode

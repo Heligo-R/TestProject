@@ -9,11 +9,11 @@
 import UIKit
 
 final class FlowCellViewModel {
-    let indexPath: IndexPath
+    let cellRow: Int
     
     var selectedState: FlowCellState?
     
-    init(for indexPath: IndexPath) {
-        self.indexPath = indexPath
+    init(for cellRow: Int) {
+        self.cellRow = cellRow
     }
 }

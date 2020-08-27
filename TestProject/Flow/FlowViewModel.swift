@@ -10,10 +10,10 @@ import Foundation
 import RxSwift
 
 final class FlowViewModel {
-    var expandedCellIndex: IndexPath?
+    var expandedCellRow: Int?
     var news: [News]?
     
-    func retrieveData() -> Observable<[News]?> {
+    func retrieveData() -> Observable<[News]> {
         let observable: Observable<Newsletter> = NewsDataManagerMock().proceedResponse()
         return observable.map{ result in
             result.news

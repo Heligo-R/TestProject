@@ -8,6 +8,6 @@
 
 import UIKit
 
-class TagDetailsView: XibWrapperView {
+final class TagDetailsView: XibWrapperView {
 
 }

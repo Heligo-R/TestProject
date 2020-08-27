@@ -9,7 +9,7 @@
 import UIKit
 
 class XibWrapperView: UIView {
-    @IBOutlet var contentView: UIView!
+    @IBOutlet internal var contentView: UIView!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -40,5 +40,5 @@ class XibWrapperView: UIView {
         contentView.prepareForInterfaceBuilder()
     }
     
-    func initialSetup() {}
+    internal func initialSetup() {}
 }

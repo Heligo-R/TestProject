@@ -22,6 +22,6 @@ struct Newsletter: Codable {
     let news: [News]
 }
 
-enum NewsType: String, Codable {
+enum NewsType: Int, Codable {
     case trading, important, trash
 }

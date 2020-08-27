@@ -23,7 +23,7 @@ final class SelectionBarView: XibWrapperView {
     @IBOutlet private weak var referenceButton: UIButton!
     @IBOutlet private weak var questionButton: UIButton!
     
-    private var selectedState: FlowCellState = Defaults.defaultFlowCellState
+    private var selectedState: FlowCellState = FlowCellDefaults.defaultFlowCellState
     
     var selectionColor: UIColor = UIColor.systemTeal
     var defaultColor: UIColor = UIColor.tertiarySystemGroupedBackground
@@ -56,13 +56,13 @@ final class SelectionBarView: XibWrapperView {
         delegate?.proceedBarSelection(selectedState: selectedState)
     }
     
-    override func initialSetup() {
+    override internal func initialSetup() {
         detailsButton.backgroundColor = defaultColor
         tagButton.backgroundColor = defaultColor
         referenceButton.backgroundColor = defaultColor
         questionButton.backgroundColor = defaultColor
         
-        switch Defaults.defaultFlowCellState {
+        switch FlowCellDefaults.defaultFlowCellState {
         case .details: detailsButton.backgroundColor = selectionColor
         case .tag: tagButton.backgroundColor = selectionColor
         case .question: questionButton.backgroundColor = selectionColor

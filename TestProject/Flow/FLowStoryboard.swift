@@ -8,6 +8,13 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+
+fileprivate struct Defaults {
+    static let exclamationmark = "exclamationmark"
+    static let cart = "cart"
+    static let trash = "trash"
+}
 
 final class FlowViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
@@ -16,40 +23,40 @@ final class FlowViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         
-        /*viewModel.retrieveData().bind(to: tableView.rx.items(cellIdentifier: "FlowCell")) { [unowned self] (row, element, cell) in
+        viewModel.retrieveData().bind(to: tableView.rx.items(cellIdentifier: String(describing: FlowTableViewCell.self))) { row, element, cell in
+            guard let cell = cell as? FlowTableViewCell else { return }
+        
+            cell.model = FlowCellViewModel(for: row)
+            cell.delegate = self
+            cell.itemNameLabel.text = element.name
+            cell.desctiptionLabel.text = element.description
+            cell.iconLabel.text = element.newsTags
+            switch element.newsType {
+            case .important: cell.iconImage.image = UIImage(systemName: Defaults.exclamationmark)
+            case .trading: cell.iconImage.image = UIImage(systemName: Defaults.cart)
+            case .trash: cell.iconImage.image = UIImage(systemName: Defaults.trash)
+            }
             
-        }.disposed(by: disposeBag)*/
+            cell.detailsView.descriptionLabel.text = element.description
+            cell.detailsView.countLabel.text = String(element.countOfSmth)
+            cell.detailsView.additionalText.text = element.additionalLetter
+        }.disposed(by: disposeBag)
     }
 }
 
-extension FlowViewController: UITableViewDelegate, UITableViewDataSource, FlowCellDelegate {
-    func manageExpandedCells(with indexPath: IndexPath) {
-        if let prevIndex = viewModel.expandedCellIndex {
-            (tableView.cellForRow(at: prevIndex) as! FlowTableViewCell).hideDetails()
+extension FlowViewController: FlowCellDelegate {
+    func manageExpandedCells(with row: Int) {
+        if let prevRow = viewModel.expandedCellRow {
+            let zeroSection = 0
+            (tableView.cellForRow(at: IndexPath(row: prevRow, section: zeroSection)) as? FlowTableViewCell)?.hideDetails()
         }
-
-        viewModel.expandedCellIndex = indexPath
+        viewModel.expandedCellRow = row
     }
     
     func updateTable() {
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FlowCell", for: indexPath) as! FlowTableViewCell
-        
-        cell.model = FlowCellViewModel(for: indexPath)
-        cell.delegate = self
-        return cell
+        tableView.performBatchUpdates(nil, completion: nil)
     }
 }
 

@@ -32,7 +32,7 @@
 		7CA5E1FB24E1991500E0A4E2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5E1FA24E1991500E0A4E2 /* Model.swift */; };
 		7CA95EE424EAA5D800E2D2A1 /* FLowStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA95EE324EAA5D800E2D2A1 /* FLowStoryboard.swift */; };
 		7CA95EE624EAA61B00E2D2A1 /* FlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA95EE524EAA61B00E2D2A1 /* FlowViewModel.swift */; };
-		7CA95EEA24EAA6C200E2D2A1 /* FlowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA95EE924EAA6C200E2D2A1 /* FlowCellView.swift */; };
+		7CA95EEA24EAA6C200E2D2A1 /* FlowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA95EE924EAA6C200E2D2A1 /* FlowTableViewCell.swift */; };
 		7CA9C21724AD41D900926241 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA9C21624AD41D900926241 /* ChartView.swift */; };
 		7CAFAEA924E44AF300ACF036 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFAEA824E44AF300ACF036 /* Camera.swift */; };
 		7CD159F724F3FF0100AC2B19 /* ApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD159F624F3FF0100AC2B19 /* ApiMock.swift */; };
@@ -78,7 +78,7 @@
 		7CA5E1FA24E1991500E0A4E2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7CA95EE324EAA5D800E2D2A1 /* FLowStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLowStoryboard.swift; sourceTree = "<group>"; };
 		7CA95EE524EAA61B00E2D2A1 /* FlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewModel.swift; sourceTree = "<group>"; };
-		7CA95EE924EAA6C200E2D2A1 /* FlowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCellView.swift; sourceTree = "<group>"; };
+		7CA95EE924EAA6C200E2D2A1 /* FlowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTableViewCell.swift; sourceTree = "<group>"; };
 		7CA9C21624AD41D900926241 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7CAFAEA824E44AF300ACF036 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		7CD159F624F3FF0100AC2B19 /* ApiMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMock.swift; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 				7CE883C624F341D800AF95C3 /* TagDetails */,
 				7C97BAA224EFC20E000A3183 /* Details */,
 				7CA25BDF24ED29FC002B261D /* SelectionBar */,
-				7CA95EE924EAA6C200E2D2A1 /* FlowCellView.swift */,
+				7CA95EE924EAA6C200E2D2A1 /* FlowTableViewCell.swift */,
 				7CDDF35B24EEE243008B477C /* FlowCellViewModel.swift */,
 				7CEAF3E824EC0F39001D2EFC /* Flow.storyboard */,
 				7CA95EE324EAA5D800E2D2A1 /* FLowStoryboard.swift */,
@@ -431,7 +431,7 @@
 				7C44486C249B6D5D00A7A2B6 /* LocalRepo.swift in Sources */,
 				7C97BAA624EFC23E000A3183 /* DetailsView.swift in Sources */,
 				7CE3962B247E5CC800EF5FBD /* ValidationManager.swift in Sources */,
-				7CA95EEA24EAA6C200E2D2A1 /* FlowCellView.swift in Sources */,
+				7CA95EEA24EAA6C200E2D2A1 /* FlowTableViewCell.swift in Sources */,
 				7CDDF35A24EEC7A6008B477C /* UIHelper.swift in Sources */,
 				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,
 				7C2A853F2490187E00E97745 /* RegistrationViewController.swift in Sources */,

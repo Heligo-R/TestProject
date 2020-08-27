@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsView: UIView {
+final class DetailsView: UIView {
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ class DetailsView: UIView {
         return label
     }()
     
-    lazy var countTitleLabel: UILabel = {
+    private lazy var countTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Count: "
@@ -32,7 +32,6 @@ class DetailsView: UIView {
     lazy var countLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
         return label
     }()
     
@@ -54,7 +53,7 @@ class DetailsView: UIView {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         addSubview(descriptionLabel)
         descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         descriptionLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -72,8 +71,6 @@ class DetailsView: UIView {
         addSubview(countLabel)
         countLabel.leadingAnchor.constraint(equalTo: countTitleLabel.trailingAnchor).isActive = true
         countLabel.topAnchor.constraint(equalTo: countTitleLabel.topAnchor).isActive = true
-        countLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        
         
         addSubview(additionalText)
         additionalText.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
