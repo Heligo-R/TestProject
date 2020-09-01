@@ -12,8 +12,8 @@ struct FlowCellDefaults {
    static let defaultFlowCellState: FlowCellState = .details
 }
 
-protocol FlowCellDelegate {
-    func manageExpandedCells(with row: Int)
+protocol FlowCellDelegate: class {
+    func manageExpandedCells(with row: Int?)
     func updateTable()
 }
 
@@ -33,9 +33,10 @@ final class FlowTableViewCell: UITableViewCell {
     
     let selectionBar = SelectionBarView()
     let detailsView = DetailsView()
+    let supportView = FlowSupportView()
     
     var model: FlowCellViewModel?
-    var delegate: FlowCellDelegate?
+    weak var delegate: FlowCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -62,16 +63,18 @@ final class FlowTableViewCell: UITableViewCell {
     
     func hideDetails() {
         selectionBar.removeFromSuperview()
+        selectionBar.resetState()
+        
         deselectState()
-
         switchCellMode(isSelectionMode: false)
+        delegate?.updateTable()
     }
     
     private func deselectState() {
         switch model?.selectedState {
         case .details: detailsView.removeFromSuperview()
         case .tag: break
-        case .question: break
+        case .question: supportView.removeFromSuperview()
         case .reference: break
         case .none: break
         }
@@ -88,7 +91,10 @@ final class FlowTableViewCell: UITableViewCell {
 
 extension FlowTableViewCell: SelectionDelegate {
     func proceedBarSelection(selectedState: FlowCellState) {
-        if model?.selectedState == selectedState { return }
+        if model?.selectedState == selectedState {
+            delegate?.manageExpandedCells(with: nil)
+            return
+        }
         
         deselectState()
         model?.selectedState = selectedState
@@ -99,7 +105,10 @@ extension FlowTableViewCell: SelectionDelegate {
             detailsView.connectConstraintsToContainer(selectableContainerView, anchors: [.top, .leading, .trailing])
             detailsView.bottomAnchor.constraint(lessThanOrEqualTo: selectableContainerView.bottomAnchor).isActive = true
         case .tag: break
-        case .question: break
+        case .question:
+            selectableContainerView.addSubview(supportView)
+            supportView.connectConstraintsToContainer(selectableContainerView, anchors: [.top, .leading, .trailing])
+            supportView.bottomAnchor.constraint(lessThanOrEqualTo: selectableContainerView.bottomAnchor).isActive = true
         case .reference: break
         }
         delegate?.updateTable()

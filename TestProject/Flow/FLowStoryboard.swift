@@ -43,11 +43,40 @@ final class FlowViewController: UIViewController {
             cell.detailsView.countLabel.text = String(element.countOfSmth)
             cell.detailsView.additionalText.text = element.additionalLetter
         }.disposed(by: disposeBag)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        adjustInsetForKeyboardShow(isShowing: true, notification: notification)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        adjustInsetForKeyboardShow(isShowing: false, notification: notification)
+    }
+    
+    private func adjustInsetForKeyboardShow(isShowing: Bool, notification: Notification) {
+        let params = notification.userInfo
+        let rect: CGRect? = (params?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        let showMultiplier: CGFloat = isShowing ? 1 : 0
+        let adjustmentSize = (rect?.size.height ?? 0) * showMultiplier
+        
+        tableView.contentInset.bottom = adjustmentSize
+        tableView.verticalScrollIndicatorInsets.bottom = adjustmentSize
     }
 }
 
 extension FlowViewController: FlowCellDelegate {
-    func manageExpandedCells(with row: Int) {
+    func manageExpandedCells(with row: Int?) {
         if let prevRow = viewModel.expandedCellRow {
             let zeroSection = 0
             (tableView.cellForRow(at: IndexPath(row: prevRow, section: zeroSection)) as? FlowTableViewCell)?.hideDetails()

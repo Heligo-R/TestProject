@@ -18,6 +18,8 @@
 		7C4448682499642200A7A2B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4448672499642200A7A2B6 /* User.swift */; };
 		7C44486C249B6D5D00A7A2B6 /* LocalRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C44486B249B6D5D00A7A2B6 /* LocalRepo.swift */; };
 		7C61187724DAF51100ED3049 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61187624DAF51100ED3049 /* ApiManager.swift */; };
+		7C913C2D24FD3E1E001308B9 /* FlowSupportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C913C2C24FD3E1E001308B9 /* FlowSupportView.xib */; };
+		7C913C2F24FD3E39001308B9 /* FlowSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C913C2E24FD3E39001308B9 /* FlowSupportView.swift */; };
 		7C97BAA624EFC23E000A3183 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97BAA524EFC23E000A3183 /* DetailsView.swift */; };
 		7C98BD5A24DC01BB001A411B /* Support.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C98BD5924DC01BB001A411B /* Support.storyboard */; };
 		7C98BD5C24DC024F001A411B /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C98BD5B24DC024F001A411B /* SupportViewController.swift */; };
@@ -62,6 +64,8 @@
 		7C4448672499642200A7A2B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C44486B249B6D5D00A7A2B6 /* LocalRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepo.swift; sourceTree = "<group>"; };
 		7C61187624DAF51100ED3049 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		7C913C2C24FD3E1E001308B9 /* FlowSupportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlowSupportView.xib; sourceTree = "<group>"; };
+		7C913C2E24FD3E39001308B9 /* FlowSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowSupportView.swift; sourceTree = "<group>"; };
 		7C97BAA524EFC23E000A3183 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		7C98BD5924DC01BB001A411B /* Support.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Support.storyboard; sourceTree = "<group>"; };
 		7C98BD5B24DC024F001A411B /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +147,15 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
+		7C913C2B24FD3DDF001308B9 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				7C913C2C24FD3E1E001308B9 /* FlowSupportView.xib */,
+				7C913C2E24FD3E39001308B9 /* FlowSupportView.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		7C97BAA224EFC20E000A3183 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +227,7 @@
 		7CA95EE024EAA4F800E2D2A1 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				7C913C2B24FD3DDF001308B9 /* Support */,
 				7CE883C624F341D800AF95C3 /* TagDetails */,
 				7C97BAA224EFC20E000A3183 /* Details */,
 				7CA25BDF24ED29FC002B261D /* SelectionBar */,
@@ -371,6 +385,7 @@
 				7CE883CA24F3427400AF95C3 /* TagDetailsView.xib in Resources */,
 				7CA25BE124ED2C69002B261D /* SelectionBarView.xib in Resources */,
 				7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */,
+				7C913C2D24FD3E1E001308B9 /* FlowSupportView.xib in Resources */,
 				7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */,
 				7C98BD5A24DC01BB001A411B /* Support.storyboard in Resources */,
 				7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */,
@@ -426,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C913C2F24FD3E39001308B9 /* FlowSupportView.swift in Sources */,
 				7C0979D824E301B600D46E71 /* Api.swift in Sources */,
 				7CA5E1FB24E1991500E0A4E2 /* Model.swift in Sources */,
 				7C44486C249B6D5D00A7A2B6 /* LocalRepo.swift in Sources */,

@@ -11,6 +11,7 @@ enum VerificationRegex: String {
     case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
     case password = "(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}"
     case name = "^[A-Z][a-z'\\-]{2,20}$"
+    case text = "*"
 }
 
 enum ValidationStatus{
