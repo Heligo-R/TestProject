@@ -21,6 +21,13 @@ class ApiMock {
         }
     }
     
+    func makePostRequest<T: Decodable, PostObject: Encodable>(toPost: PostObject) -> Observable<T> {
+        let encodedData = try? JSONEncoder().encode(toPost)
+        debugPrint(encodedData as Any)
+        
+        return proceedResponse()
+    }
+    
     func proceedResponse<T: Decodable> () -> Observable<T> {
         return Observable.create { observer in
             if let data = self.result {
@@ -32,6 +39,13 @@ class ApiMock {
             }
             return Disposables.create()
         }
+    }
+}
+
+final class SupportManagerMock: ApiMock {
+    init() {
+        let supportMockData = ["message": "Your support will be provided!", "timeToWait" : "200 Hours"]
+        super.init(result: supportMockData)
     }
 }
 

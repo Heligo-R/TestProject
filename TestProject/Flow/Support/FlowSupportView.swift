@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol SupportViewDelegate: class {
+    func provideSupport(supportRequest: Support)
+}
+
 final class FlowSupportView: XibWrapperView {
     @IBOutlet private weak var emailTextField: ValidatableTextField!
     @IBOutlet private weak var subjectTextField: UITextField!
     @IBOutlet private weak var messageTextField: ValidatableTextField!
     
     let validation = ValidationManager()
+    
+    weak var delegate: SupportViewDelegate?
     
     @IBAction func actionButton(_ sender: Any) {
         var readingFailed = false
@@ -26,8 +32,9 @@ final class FlowSupportView: XibWrapperView {
         
         validateField(field: emailTextField, expression: .email)
         validateField(field: messageTextField, expression: .text)
-        if readingFailed {
-            return
-        } else { return }
+        
+        if !readingFailed {
+            delegate?.provideSupport(supportRequest: Support(email: emailTextField.text ?? "", subject: subjectTextField.text ?? "", message: messageTextField.text ?? ""))
+        }
     }
 }

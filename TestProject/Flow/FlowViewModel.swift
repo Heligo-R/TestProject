@@ -19,6 +19,10 @@ final class FlowViewModel {
             result.news
         }
     }
+    
+    func requestSupport(request: Support) -> Observable<SupportResponse> {
+        return SupportManagerMock().makePostRequest(toPost: request)
+    }
 }
 
 

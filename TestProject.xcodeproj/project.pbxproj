@@ -31,6 +31,7 @@
 		7CA494FC23E455EA00ADDE05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FA23E455EA00ADDE05 /* Main.storyboard */; };
 		7CA494FE23E455F000ADDE05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FD23E455F000ADDE05 /* Assets.xcassets */; };
 		7CA4950123E455F000ADDE05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA494FF23E455F000ADDE05 /* LaunchScreen.storyboard */; };
+		7CA58E7524FE929600BF3916 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA58E7424FE929600BF3916 /* Support.swift */; };
 		7CA5E1FB24E1991500E0A4E2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5E1FA24E1991500E0A4E2 /* Model.swift */; };
 		7CA95EE424EAA5D800E2D2A1 /* FLowStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA95EE324EAA5D800E2D2A1 /* FLowStoryboard.swift */; };
 		7CA95EE624EAA61B00E2D2A1 /* FlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA95EE524EAA61B00E2D2A1 /* FlowViewModel.swift */; };
@@ -79,6 +80,7 @@
 		7CA494FD23E455F000ADDE05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CA4950023E455F000ADDE05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA4950223E455F000ADDE05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CA58E7424FE929600BF3916 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		7CA5E1FA24E1991500E0A4E2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7CA95EE324EAA5D800E2D2A1 /* FLowStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLowStoryboard.swift; sourceTree = "<group>"; };
 		7CA95EE524EAA61B00E2D2A1 /* FlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewModel.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				7C0979D924E30CA600D46E71 /* Error.swift */,
 				7CAFAEA824E44AF300ACF036 /* Camera.swift */,
 				7CD159F824F3FF7B00AC2B19 /* News.swift */,
+				7CA58E7424FE929600BF3916 /* Support.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				7CE39630247E781B00EF5FBD /* VerificationUtil.swift in Sources */,
 				7C2A853F2490187E00E97745 /* RegistrationViewController.swift in Sources */,
 				7CE3962E247E76DF00EF5FBD /* ValidatableTextField.swift in Sources */,
+				7CA58E7524FE929600BF3916 /* Support.swift in Sources */,
 				7CD159F924F3FF7B00AC2B19 /* News.swift in Sources */,
 				7C98BD5C24DC024F001A411B /* SupportViewController.swift in Sources */,
 				7CFB866C2485190A00DF191B /* LoginViewController.swift in Sources */,

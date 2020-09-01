@@ -27,9 +27,16 @@ final class FlowViewController: UIViewController {
         
         viewModel.retrieveData().bind(to: tableView.rx.items(cellIdentifier: String(describing: FlowTableViewCell.self))) { row, element, cell in
             guard let cell = cell as? FlowTableViewCell else { return }
-        
-            cell.model = FlowCellViewModel(for: row)
-            cell.delegate = self
+            
+            if cell.model == nil {
+                cell.model = FlowCellViewModel(for: row)
+            }
+            if cell.delegate == nil {
+                cell.delegate = self
+            }
+            
+            cell.supportView.delegate = self
+            
             cell.itemNameLabel.text = element.name
             cell.desctiptionLabel.text = element.description
             cell.iconLabel.text = element.newsTags
@@ -42,6 +49,8 @@ final class FlowViewController: UIViewController {
             cell.detailsView.descriptionLabel.text = element.description
             cell.detailsView.countLabel.text = String(element.countOfSmth)
             cell.detailsView.additionalText.text = element.additionalLetter
+            
+            cell.hideDetails()
         }.disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(
@@ -75,17 +84,34 @@ final class FlowViewController: UIViewController {
     }
 }
 
-extension FlowViewController: FlowCellDelegate {
+extension FlowViewController: FlowCellDelegate, SupportViewDelegate {
     func manageExpandedCells(with row: Int?) {
         if let prevRow = viewModel.expandedCellRow {
             let zeroSection = 0
-            (tableView.cellForRow(at: IndexPath(row: prevRow, section: zeroSection)) as? FlowTableViewCell)?.hideDetails()
+            let prevCellIndexPath = IndexPath(row: prevRow, section: zeroSection)
+            if let cell = tableView.cellForRow(at: prevCellIndexPath) as? FlowTableViewCell {
+                cell.hideDetails()
+            } else {
+                tableView.reloadRows(at: [prevCellIndexPath], with: .automatic)
+            }
         }
         viewModel.expandedCellRow = row
     }
     
     func updateTable() {
         tableView.performBatchUpdates(nil, completion: nil)
+    }
+    
+    func provideSupport(supportRequest: Support) {
+        viewModel.requestSupport(request: supportRequest).subscribe{ event in
+            switch event {
+            case .next(let response):
+                let alert = UIAlertController(title: "Support", message: response.message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            default: break
+            }
+        }.disposed(by: disposeBag)
     }
 }
 
