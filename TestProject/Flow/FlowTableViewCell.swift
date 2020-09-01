@@ -12,31 +12,37 @@ struct FlowCellDefaults {
    static let defaultFlowCellState: FlowCellState = .details
 }
 
+fileprivate struct Defaults {
+    static let exclamationmark = "exclamationmark"
+    static let cart = "cart"
+    static let trash = "trash"
+}
+
 protocol FlowCellDelegate: class {
     func manageExpandedCells(with row: Int?)
     func updateTable()
 }
 
 final class FlowTableViewCell: UITableViewCell {
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var iconLabel: UILabel!
-    @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet private weak var iconImage: UIImageView!
+    @IBOutlet private weak var iconLabel: UILabel!
+    @IBOutlet private weak var itemImage: UIImageView!
+    @IBOutlet private weak var itemNameLabel: UILabel!
 
     @IBOutlet private weak var containerView: UIView!
     
     @IBOutlet private weak var moreButton: UIButton!
-    @IBOutlet weak var desctiptionLabel: UILabel!
+    @IBOutlet private weak var desctiptionLabel: UILabel!
     
     @IBOutlet private weak var selectionBarView: UIView!
     @IBOutlet private weak var selectableContainerView: UIView!
     
-    let selectionBar = SelectionBarView()
-    let detailsView = DetailsView()
-    let supportView = FlowSupportView()
+    private let selectionBar = SelectionBarView()
+    private let detailsView = DetailsView()
+    private let supportView = FlowSupportView()
     
-    var model: FlowCellViewModel?
-    weak var delegate: FlowCellDelegate?
+    private var model: FlowCellViewModel?
+    private weak var delegate: FlowCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,6 +65,32 @@ final class FlowTableViewCell: UITableViewCell {
             proceedBarSelection(selectedState: FlowCellDefaults.defaultFlowCellState)
         default: break
         }
+    }
+    
+    func setupCell(data: News, delegate: SupportViewDelegate & FlowCellDelegate, row: Int) {
+        if model == nil {
+            model = FlowCellViewModel(for: row)
+        }
+        if self.delegate == nil {
+            self.delegate = delegate
+        }
+        
+        supportView.delegate = delegate
+        
+        itemNameLabel.text = data.name
+        desctiptionLabel.text = data.description
+        iconLabel.text = data.newsTags
+        switch data.newsType {
+        case .important: iconImage.image = UIImage(systemName: Defaults.exclamationmark)
+        case .trading: iconImage.image = UIImage(systemName: Defaults.cart)
+        case .trash: iconImage.image = UIImage(systemName: Defaults.trash)
+        }
+        
+        detailsView.descriptionLabel.text = data.description
+        detailsView.countLabel.text = String(data.countOfSmth)
+        detailsView.additionalText.text = data.additionalLetter
+        
+        hideDetails()
     }
     
     func hideDetails() {
